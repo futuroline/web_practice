@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+	#cssid{
+		height:100px;
+		width:300px;
+		background-color: #E5F99A;
+	}
+	#textid{
+		background-color: #3CFD46;
+		width: 300px;
+	}
+</style>
+<script type="text/javascript">
+	function change(){
+		
+		var selNode = document.getElementById("selid");
+		var value = selNode.options[selNode.selectedIndex].value;
+		//var value = selNode.options[selNode.seletedIndex].value;
+		
+		var divNode = document.getElementById("cssid");
+		var divText = document.getElementById("textid");
+		
+		divNode.style.textTransform = value;
+		divText.innerHTML = "text-transform:"+value+";";
+	}
+</script>
+</head>
+
+<body>
+<div id="cssid">
+	Good good study,Day day up!
+</div>
+<p></p>
+<select id="selid" onChange="change()">
+	<option value="none">--text-transform--</option>
+	<option value="capitalize">首字母大写</option>
+	<option value="uppercase">所有字母大写</option>
+	<option value="lowercase">所有字母小写</option>
+</select>
+<p></p>
+<div id="textid">
+	text-transfor
+</div>
+</body>
+</html>

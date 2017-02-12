@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+	.table{
+		border: #63F761;
+		border-spacing: 1px
+	}
+</style>
+<script type="text/javascript" src="doctool.js"></script>
+<script type="text/javascript">
+	/*
+	表格中按照年龄的顺序进行排序：
+	1、每一个人的信息是一行，那么现将行都取出，临时存入到数组中；
+	2、根据数组中行对象的其中一个单元格中的数据进行排序
+	3、将排序后的行对象重新添加到表格对象中
+	*/
+	var b = true;
+	function sort(){
+		//1、获取表格中所有的行对象
+		var tabNode = doc.getElementsByTagName("table")[0];
+		var trs = tabNode.rows;
+		//2、定义临时容器，将表格中需要参与排序的行对象临时存储
+		var arr = new Array(); //临时容器存的都是表格行的引用
+		
+		for (var i=1;i<trs.length;i++){
+			arr[i] = trs[i];
+			
+		}
+		sortt(arr);
+		var tbodyNode = tabNode.getElementsByTagName("tbody")[0];
+		if (b){
+			for (var i=1;i<arr.length;i++){
+			//alert(arr[i].cells[1].innerText);
+			tbodyNode.appendChild(arr[i]);
+			}
+			b=false;
+		}else{
+			for (var i=arr.length-1;i>=0;i++){
+			//alert(arr[i].cells[1].innerText);
+			tbodyNode.appendChild(arr[i]);
+			}
+			b=true;
+		}
+		
+	}
+	
+	function sortt(arr){
+		for (var i=1;i<arr.length;i++){
+			for (var j=i+1;j<arr.length;j++){
+				if (arr[i].cells[1].innerText>arr[j].cells[1].innerText){
+					var temp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = temp;
+				}
+			}
+		}
+	}
+	
+</script>
+</head>
+<body>
+<table>
+	<tr>
+		<th>姓名</th>
+		<th><a href="javascript:void(0)" onClick="sort()" >年龄</a></th>
+		<th>地址</th>
+	</tr>
+	<tr>
+		<td>张三</td>
+		<td>27</td>
+		<td>北京</td>
+	</tr>
+	<tr>
+		<td>李四</td>
+		<td>31</td>
+		<td>上海</td>
+	</tr>
+	<tr>
+		<td>王五</td>
+		<td>23</td>
+		<td>广州</td>
+	</tr>
+	<tr>
+		<td>赵六</td>
+		<td>32</td>
+		<td>深圳</td>
+	</tr>
+	
+</table>
+</body>
+</html>

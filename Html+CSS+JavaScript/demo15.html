@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+	table{
+		border: #8BF49A 1px solid;
+		width: 600px;
+		border-collapse: collapse
+	}
+	table td,table th{
+		border: #8BF49A 1px solid;
+		padding: 10px;
+	}
+	table td{
+		background-color: #ffff99;
+	}
+	table th{
+		background-color: #C0F176;
+	}
+	#repswspan{
+		margin-left: 150px
+	}
+	.errinfo{
+		color: #FB080C;
+		display: none;
+	}
+	.focus{
+		border: #09F71D 2px solid;
+	}
+	.normal{
+		border: #15EFEB 1px solid;
+	}
+	.error{
+		border: #FC0A0E 2px solid;
+	}
+</style>
+
+<script type="text/javascript">
+	function inputColor(input){
+		input.className = "normal";
+		input.onfocus = function(){
+			this.className = "focus";
+		}
+	}
+	
+	window.onload = function(){
+		with(document.forms[0]){
+			
+			inputColor(user);
+			inputColor(psw);
+			inputColor(repsw);
+			inputColor(mail);
+		}
+	}
+	
+	/*window.onload = function(){
+		document.forms[0].user.onfocus = function(){
+			this.className = "focus";
+		}
+	}*/
+	
+	//复用性较差
+	function checkUserDemo(user){
+		var value = user.value;
+		var reg = /^\w{3,5}$/;
+		var divNode = document.getElementById("uerDiv"); 
+		if (reg.test(value)){
+			user.className = "normal";
+			divNode.style.display = "none";
+		}else{
+			user.className = "error";
+			divNode.style.display = "block";
+		}
+		
+	}
+	
+	function checkUser(userNode){
+		var reg = /^\w{3,5}$/;
+		return check(userNode,reg,"uerDiv");
+	}
+	
+	function checkPwd(pwdNode){
+		var reg = /^\w{3,5}$/i;
+		return check(pwdNode,reg,"pwdDiv");
+	}
+	
+	function checkRepwd(repwdNode){
+		var value1 = repwdNode.value;
+		var value2 = document.getElementsByName("psw")[0].value;
+		var divNode = document.getElementById("repwdDiv");
+		if (value1==value2){
+			repwdNode.className = "normal";
+			divNode.style.display = "none";
+			return true;
+		}else{
+			repwdNode.className = "error";
+			divNode.style.display = "block";
+			return false;
+		}
+	}
+	
+	function checkMail(mailNode){
+		
+		var reg = /^\w+@\w+(\.\w+)+$/;
+		return check(mailNode,reg,"mailDiv");
+	}
+	
+	//校验方法
+	function check(inputNode,regex,divId){
+		var b = false;
+		var value = inputNode.value;
+		var divNode = document.getElementById(divId); 
+		if (regex.test(value)){
+			inputNode.className = "normal";
+			divNode.style.display = "none";
+			b = true;
+		}else{
+			inputNode.className = "error";
+			divNode.style.display = "block";
+		}
+		return b;
+	}
+	
+	function checkForm(formNode){
+		with(formNode){
+			if (checkUser(user)&&checkPwd(psw)&&checkRepwd(repsw)&&checkMail(mail)){
+				event.returnValue = true;
+			}else{
+				event.returnValue = false;
+			}
+		}
+	}
+</script>
+</head>
+
+<body>
+
+<!--1、定义页面
+	通过表格来格式化表单
+	表格的行都有自己的背景颜色
+	将单元格中的数据通过DIV进行封装，以便操作
+2、定义样式
+	表格的样式
+	div的样式
+3、动态效果
+	3.1、在页面加载时,定义所有的输入框默认框线颜色，然后定义获取焦点时的框线颜色
+	3.2、进行内容的校验，可以通过正则表达式完成，并可以通过框线的样式给用户提示
+		 通过对刚才用户名的校验分析，发现代码重复度很高，为了提高代码复用性，将不同的内容作为参数传递，将相同内容进行封装
+	-->
+<form onSubmit="checkForm(this)">
+	<table>
+		<tr>
+			<th>注册表单</th>
+		</tr>
+		<tr>
+			<td>
+				<div>用户名</div>
+				<div><input type="text" name="user" onBlur="checkUser(this)"/></div>
+				<div id="uerDiv" class="errinfo">用户名错误，请按要求输入</div>
+				<div>用户名必须是3-5位，由字母(a-z),数字（0-9）,下划线（_）组成</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<div><span>密码</span><span id="repswspan">确认密码</span></div>
+			<div>
+				<input type="password" name="psw" onBlur="checkPwd(this)" />
+				<input type="password" name="repsw" onBlur="checkRepwd(this)" />
+			</div>
+			<div class="errinfo" id="pwdDiv">密码格式错误，请按规范输入</div>
+			<div class="errinfo" id="repwdDiv">两次密码输入不一致</div>
+			<div>密码必须是3-5位，由字母(a-z),数字（0-9）,下划线（_）组成</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div>邮件地址</div>
+				<div><input type="text" name="mail" onBlur="checkMail(this)" /></div>
+				<div class="errinfo" id="mailDiv">邮件格式错误，请按要求填写</div>
+			</td>
+		</tr>
+		<tr>
+			<th>
+				<input type="submit" value="提交数据" />	
+			</th>
+		</tr>
+	</table>
+</form>
+</body>
+</html>

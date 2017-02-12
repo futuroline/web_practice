@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script type="text/javascript" src="doctool.js" ></script>
+<script type="text/javascript">
+	var b = true;
+
+	function change()
+	{
+		var divNode = document.getElementsByTagName("div")[0];
+		//alert(divNode);
+		/*if (b)
+		{
+			divNode.style.height = "8px";
+			divNode.style.overflow="hidden";
+			b = false;
+		}else{
+			divNode.style.height = "8px";
+			divNode.style.overflow="visible";
+			b = true;
+		}*/
+		
+		if (divNode.className=="open"){
+			divNode.className = "open";
+		}else{
+			divNode.className = "close";
+		}
+	}
+	
+	function Visible(){
+		//var listNode = document.getElementsByTagName("dl")[0];
+		var dtNode = window.event.srcElement;
+		var listNode = dtNode.parentNode;
+		if (listNode.className=="hidden"){
+			listNode.className = "visible";
+		}else{
+			listNode.className = "hidden";
+		}
+	}
+	
+	function Visible(dtNode){
+		//var listNode = document.getElementsByTagName("dl")[0];
+		//var dtNode = window.event.srcElement;
+		var listNode = dtNode.parentNode;
+		var nodes = document.getElementsByTagName("dl");
+		for (var i=0;i<nodes.length;i++){
+			if (nodes[i]==listNode){
+				if (listNode.className=="visible"){
+					listNode.className = "hidden";
+					//alert("hidden");
+				}else{
+					listNode.className = "visible";
+					//alert("visible");
+				}
+			}else{
+				nodes[i].className=="hidden";
+				//alert("hidden");
+			}
+			
+		}
+	}
+	/*
+		获取事件源的两种方式:
+		1、通过event对象的srcElement属性
+		2、将事件源对象通过this传入
+		*/
+</script>
+<style type="text/css">
+	.open{
+		height: 8px;
+		overflow: visible;
+		
+	}
+	.close{
+		height: 8px;
+		overflow: hidden;
+		
+	}
+	
+<style type="text/css">
+	.visible{
+		height: 18px;
+		overflow: visible;
+		
+	}
+	.hidden{
+		height: 18px;
+		overflow: hidden;
+		
+	}
+</style>
+</head>
+
+<body>
+<!--
+需求：通过点击，实现一个展开闭合效果
+<div  onClick="change()">//style="overflow: hidden;height:8px"
+	通过点击，实现一个展开闭合效果
+</div>
+-->
+<dl>
+	<dt onClick="Visible()">上层项目</dt>
+	<dd>展开闭合</dd>
+	<dd>展开闭合</dd>
+	<dd>展开闭合</dd>
+	<dd>展开闭合</dd>
+</dl>
+
+<dl>
+ 	<dt onClick="Visible(this)">上层项目</dt>
+	<dd>展开闭合</dd>
+	<dd>展开闭合</dd>
+	<dd>展开闭合</dd>
+	<dd>展开闭合</dd>
+</dl>
+
+<dl>
+ 	<dt onClick="Visible(this)">上层项目</dt>
+	<dd>展开闭合</dd>
+	<dd>展开闭合</dd>
+	<dd>展开闭合</dd>
+	<dd>展开闭合</dd>
+</dl>
+
+<dl>
+ 	<dt onClick="Visible(this)">上层项目</dt>
+	<dd>展开闭合</dd>
+	<dd>展开闭合</dd>
+	<dd>展开闭合</dd>
+	<dd>展开闭合</dd>
+</dl>
+
+<dl>
+ 	<dt onClick="Visible(this)">上层项目</dt>
+	<dd>展开闭合</dd>
+	<dd>展开闭合</dd>
+	<dd>展开闭合</dd>
+	<dd>展开闭合</dd>
+</dl>
+</body>
+</html>

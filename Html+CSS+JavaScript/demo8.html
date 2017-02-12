@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script type="text/javascript">
+	//1、获取被选中的checkbox，通过checked属性的状态来完成
+	//2、获取被选中checkbox的value金额
+	//3、求和
+	//4、定义span区，存储总金额
+	function getSum(){
+		var sum1=0;
+		var items = document.getElementsByName("item");
+		for (var i=0;i<items.length;i++){
+			if (items[i].checked){
+				sum1 += parseInt(items[i].value);
+			}
+		}
+		var spanNode = document.getElementById("sum");
+		spanNode.innerHTML =sum1+ "元";
+	}
+	
+	function checkAll(){
+		var allNode = document.getElementsByName("all")[0];
+		var items = document.getElementsByName("item");
+		for (var i=0;i<items.length;i++){
+			items[i].checked = allNode.checked;
+		}
+	}
+</script>
+</head>
+
+<body>
+<input type="checkbox" name="all" onClick="checkAll()" />全选<br/>
+<input type="checkbox" value="3000" name="item"/>笔记本电脑：3000元<br/>
+<input type="checkbox" value="3000" name="item"/>笔记本电脑：3000元<br/>
+<input type="checkbox" value="3000" name="item"/>笔记本电脑：3000元<br/>
+<input type="checkbox" value="3000" name="item"/>笔记本电脑：3000元<br/>
+<input type="checkbox" value="3000" name="item"/>笔记本电脑：3000元<br/>
+<input type="checkbox" value="3000" name="item"/>笔记本电脑：3000元<br/>
+<input type="checkbox" value="3000" name="item"/>笔记本电脑：3000元<br/>
+<input type="button" value="获取总金额" onClick="getSum()" /><span id="sum"></span>
+</body>
+</html>

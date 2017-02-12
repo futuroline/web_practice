@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+	.one{
+		background-color: #12F9B5;
+	}
+	.two{
+		background-color: #4473F4;
+	}
+	.over{
+		background-color: #000000;
+	}
+	
+</style>
+<script type="text/javascript">
+	//行颜色间隔显示
+	var styleName;
+	function tcolor(){
+		var tabNode = document.getElementsByTagName("table")[0];
+		var trs = tabNode.rows;
+		
+		for (var i=0;i<trs.length;i++){
+			if (i%2==1){
+				trs[i].className = "one";
+			}else{
+				trs[i].className = "two";
+			}
+				
+			trs[i].onmouseover=function(){
+				styleName = this.className;
+				this.className = "over";
+			}
+			trs[i].onmouseout=function(){
+				this.className = styleName;
+			}
+		}
+	}
+window.onload=tcolor;
+	
+	function over(trNode){
+		styleName = trNode.className;
+		trNode.className = "over";
+	}
+	
+	function out(trNode){
+		trNode.className = styleName;
+	}
+	
+</script>
+</head>
+
+<body>
+<table>
+	<tr style="background-color: #40F995">
+		<th>姓名</th>
+		<th><a href="javascript:void(0)" onClick="sort()" >年龄</a></th>
+		<th>地址</th>
+	</tr>
+	<tr> <!--onMouseOver="over(this)" onMouseOut="out(this)"-->
+		<td>张三</td>
+		<td>27</td>
+		<td>北京</td>
+	</tr>
+	<tr>
+		<td>李四</td>
+		<td>31</td>
+		<td>上海</td>
+	</tr>
+	<tr>
+		<td>王五</td>
+		<td>23</td>
+		<td>广州</td>
+	</tr>
+	<tr>
+		<td>赵六</td>
+		<td>32</td>
+		<td>深圳</td>
+	</tr>
+	
+</table>
+</body>
+</html>

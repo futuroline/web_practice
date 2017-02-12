@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<script type="text/javascript" src="ArrayUtils.js"></script>
+<script type="text/javascript">
+	/*var arr = [1,3,56,2,6,75,43];
+	var a = ArrayTool.getMax(arr);
+	var b = ArrayTool.getMin(arr);
+	alert("max="+a+" min="+b);
+	
+	function Student(name, age){
+		this.name = name;
+		this.age = age;
+	}
+	
+	var stu = new Student("xiaoming",12);
+	*/
+	//with语句
+	/*alert(stu.name+" "+stu.age);
+	with (stu){ //确定某一个对象所使用的范围
+		alert(name+" "+age);
+	}*/
+	
+	//for (var in object)
+	/*for (s in stu){  //对对象属性的遍历
+		//alert(s);
+		alert(stu[s]);
+	}*/
+	
+	/*for (x in arr){  //x是数组角标遍历
+		alert(arr[x]);
+	}*/
+	
+	//String对象
+/*	var str = "abcdefghijk";
+	var value = str.charAt(1);
+	var value1 = str.bold();
+	var value2 = str.fontcolor("red");
+	var value3 = str.link("http://www.baidu.com/");
+	var value4 = str.substring(2,4);
+	var value5 = str.substr(2,4)
+	alert(value+"  "+value1+"  "+value2+"  "+value3+"  "+value4+"  "+value5);
+	document.writeln(value1);
+	document.writeln(value2);
+	document.writeln(value3);
+	document.writeln(value4);
+	document.writeln(value5);*/
+	
+	//Math对象
+	/*for (var i=0;i<10;i++){
+		var d = parseInt(Math.random()*10);
+		document.writeln(d+"<br\>");	
+	}
+	
+	var v = parseInt("1a",16);  //第一个为待转换的数字，第二个参数为待转换数字是多少进制的
+	alert(v);
+	var n = 6;
+	var num = n.toString(2);  //十进制转换其他进制后转换为字符串
+	alert(num);*/
+	//Global对象  全局对象  定义了一些全局方法
+	//Date对象
+	/*var d = new Date();
+	alert(d);
+	with (d){
+		var month = (getMonth()+1);
+		month = month>9?month:"0"+month;
+		alert(getYear()+"年"+month+"月"+getDate()+"日 星期"+getDay());
+	}*/
+	
+	//prototype属性 返回对象类型原型的引用
+	
+	/*function getMax(arr){
+		var max = arr[0];
+		for (var i=1;i<arr.length;i++){
+			if (arr[i]>max){
+				max = arr[i];
+			}
+		}
+		return max;
+	}
+	
+	var arr = [4,23,57,42,12,3,67,4];
+	arr.sort();
+	for (x in arr){
+		alert(arr[x]);
+	}
+	var max = getMax(arr);
+	alert(max);*/
+	
+	
+	/*function getMax(arr){
+		var max = arr[0];
+		for (var i=1;i<arr.length;i++){
+			if (arr[i]>max){
+				max = arr[i];
+			}
+		}
+		return max;
+	}
+	var arr = [4,23,57,42,12,3,67,4];
+	Array.prototype.getMaxEle = getMax; //获取对象原型并将自定义方法赋值到对象原型上
+	
+	var max = arr.getMaxEle(arr);
+	alert(max);*/
+	
+	function getMax(){
+		var max = this[0];
+		for (var i=1;i<this.length;i++){
+			if (this[i]>max){
+				max = this[i];
+			}
+		}
+		return max;
+	}
+	var arr = [4,23,57,42,12,3,67,4];
+	Array.prototype.getMaxEle = getMax; //获取对象原型并将自定义方法赋值到对象原型上
+	
+	var max = arr.getMaxEle();
+	alert(max);
+	
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+	table{
+		border: #1BF718 1px solid;
+		width: 70%
+	}
+	table td,table th{
+		border: #5ABBF1 1px solid;
+	}
+	table th{
+		background-color: #E8F154;
+	}
+	.one{
+		background-color: #F3D2D2;
+	}
+	.two{
+		background-color: #EBF0BA;
+	}
+	.over{
+		background-color: #8BEF7C;
+	}
+</style>
+
+<script type="text/javascript">
+	//行颜色间隔显示并高亮
+	var oldColor;
+	function trColor(){
+		var tabNode= document.getElementsByTagName("table")[0];
+		var trs = tabNode.rows;
+		for (var i=1;i<trs.length-1;i++){
+			if (i%2==1){
+				trs[i].className = "one";
+			}else{
+				trs[i].className = "two";
+			}
+			trs[i].onmouseover = function(){
+				oldColor = this.className;
+				this.className = "over";
+			}
+			trs[i].onmouseout = function(){
+				this.className = oldColor;
+			}
+		}
+		
+	}
+	function checkAll(index){
+		var allNode = document.getElementsByName("all")[index];
+		var mails = document.getElementsByName("mail");
+		for (var i=0;i<mails.length;i++){
+			mails[i].checked = allNode.checked;
+		}
+	}
+	//完成按钮的选取
+	function checkButton(num){
+		
+		var mails = document.getElementsByName("mail");
+		for (var i=0;i<mails.length;i++){
+			if (parseInt(num)==0){
+				mails[i].checked = true;
+			}else if (parseInt(num)==1){
+				mails[i].checked = false;
+			}else{
+				mails[i].checked = !mails[i].checked;
+			}
+			
+		}
+	}
+	//删除所选邮件
+	function delMail(){
+		if (!window.confirm("你真的要删除所选邮件吗？")) return;
+		var tabNode= document.getElementsByTagName("table")[0];
+		var mails = document.getElementsByName("mail");
+		for (var i=mails.length-1;i>=0;i--){
+			if (mails[i].checked){
+				var node = mails[i].parentNode.parentNode;
+				node.parentNode.removeChild(node);
+			}
+		}
+	}
+	window.onload = trColor;
+</script>
+</head>
+
+<body>
+<table>
+	<tr>
+		<th><input type="checkbox" name="all" onClick="checkAll(0)"/>全选</th>
+		<th>发件人</th>
+		<th>邮件内容</th>
+	</tr>
+	<tr>
+		<td><input type="checkbox" name="mail"/> </td>
+		<td>张三1</td>
+		<td>新的邮件</td>
+	</tr>
+	<tr>
+		<td><input type="checkbox" name="mail"/> </td>
+		<td>张三2</td>
+		<td>新的邮件</td>
+	</tr>
+	<tr>
+		<td><input type="checkbox" name="mail"/> </td>
+		<td>张三3</td>
+		<td>新的邮件</td>
+	</tr>
+	<tr>
+		<td><input type="checkbox" name="mail"/> </td>
+		<td>张三4</td>
+		<td>新的邮件</td>
+	</tr>
+	<tr>
+		<th><input type="checkbox" name="all" onClick="checkAll(1)"/>全选</th>
+		<th colspan="2">
+			<input type="button" value="全选" onClick="checkButton(0)" />
+			<input type="button" value="取消全选" onClick="checkButton(1)" />
+			<input type="button" value="反选" onClick="checkButton(2)" />
+			<input type="button" value="删除所选邮件" onClick="delMail()" />
+		</th>
+	</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+	#bodyid{
+		border: #13F557 1px solid;
+		width: 600px;
+		height: 800px
+	}
+</style>
+
+<script type="text/javascript">
+	window.onload = function(){
+		document.body.onmousemove = function(){
+			var adNode = document.getElementById("ad");
+			//alert(adNode);
+			adNode.style.left = window.event.x-10;
+			adNode.style.top =  window.event.y-10;
+		}
+	}
+	
+	function closeAd(){
+		var adNode = document.getElementById("ad"); 
+		adNode.style.display = "none";
+	}
+</script>
+</head>
+
+<body>
+
+<div id="ad" style="position:absolute;left: 0px;top:0px" onClick="closeAd()">
+	<a href="http://www.ad.com" target="_blank"><img src="../../Pictures/Camera Roll/cyh1.jpg" width="100px" height="60px" /></a>
+</div>
+<div id="bodyid">
+	body区域
+	
+</div>
+<!--
+
+DOM编程：
+1、定义界面：
+	通过html的标签将数据进行封装
+2、定义一些静态的样式
+	通过css
+3、需要动态完成的和用户的交互
+	a、先明确事件源
+	b、明确事件，将事件注册到事件源上
+	c、通过javascript函数对事件进行处理
+	d、在处理过程中需要明确被处理的区域
+	
+
+
+table标签的示例：
+1、在页面上通过按钮创建一个表格
+思路：
+	1、创建一个table节点，document.createElement("table")
+	2、通过table节点的insertRow()方法创建表格的行对象并添加到rows集合中
+	3、通过行对象的inserCell()方法创建单元格对象，并添加到cells集合中
+	4、给单元格中添加数据
+		a、创建一个节点，如文本节点，docuemnt.createTextNode("文本内容")，通过单元格对象appendChild方法将文本节点添加到单元格的尾部
+		b、可以通过单元格的insertHTML,添加单元格中的元素，tdNode.insertHTNL="<img src='1.jpg' alt='图片说明信息'>"
+	5、建立好表格节点，添加到DOM树种，也就是页面的指定位置上
+	
+2、如何删除表格中的行或者列
+思路：
+	1、删除行、获取表格对象，通过表格对象中的deleteRow方法，将指定的行索引传入deleteROw方法中
+	2、删除列、表格没有直接删除列的方法，要通过删除每一行中指定的单元格来完成删除列动作
+		获取所有行的对象，并进行遍历，通过对象的deleteCell方法将指定单元格删除
+
+3、对表格中的数据进行排序
+思路：
+	1、获取表格中的所有行对象，
+	2、定义临时存储，将需要进行排序的行对象存入到数组中
+	3、对数组进行排序，通过比较每一个行对象中指定单元格中的数据，如果是整数需要经过parseInt进行转换
+	4、将排序后的数组通过遍历，将每一个行对象重新添加回表格即可，通过tbody节点的appendChild方法
+	5、其实排序就是讲每一个行对象的引用取出
+	
+4、表格的行颜色间隔实现，并在鼠标指定的行上高亮显示
+思路：
+	1、获取所有的行对象，将需要间隔颜色显示的行对象进行动态的className属性的指定，那么前提是：先定义好类选择器
+	2、为了完成高亮需要用到两个事件，onmouseover（鼠标进入事件），onmouseout(鼠标移出)
+	3、为了方便可以在遍历对象时，将每一个行对象都进行连个数据属性的指定，并通过匿名函数来完成该事件的处理
+	4、高亮的原理就是将鼠标进入时的指定行颜色改变，改变前先记录住原来行对象的样式，这样在鼠标离开时可以将原样式还原
+	5、该样式需要在页面加载完后直接显示，所以使用的是window.onload操作
+	
+5、完成一个与css手册中一样的示例
+	通过下拉菜单的选择显示指定样式属性的使用效果
+	
+6、表单中的组件
+	单选框、复选框
+	这两个组件都有一个属性来表示其选中与否的状态，checked
+	
+	完成一个对多个复选框，进行全选的操作
+	思路：将全选的哪个复选框的checked状态赋给其他所有checkbox即可
+	
+	<input type="checkbox" name="all" onclick="checkAll()"/>全选<br/>
+	<input type="checkbox" name="item" />
+	<input type="checkbox" name="item" />
+	<input type="checkbox" name="item" onclick="checkAll()"/>全选<br/>
+	
+	<script type = "text/javascript">
+		function checkAll(){
+			var node = document.getElementsByName("all")[0];
+			var items =  document.getElementsByName("item");
+			for (var i=0;i<items.length;i){
+				item[x].checked = node.checked;
+			}
+		}
+	</script>
+	
+7、获取鼠标的坐标，让指定区域随着鼠标移动
+	获取鼠标坐标：event.x event.y
+	指定区域随着鼠标移动其实就是改变了指定区域的left top属性值
+	
+	这里需要用到的事件：body对象的onmousemove
+	还需要用到一个CSS样式，直接定义页面，所有区域都在同一层次
+	为了对某一个区域进行定位，将该区域分离到另一个层次，用到了css中position属性
+	
+	
+	
+	
+-->
+
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>节点操作回顾</title>
+<script type="text/javascript" src="doctool.js"></script>
+<script type="text/javascript">
+	function changeSize(className){
+		var divNode = byId("newsId");
+		//divNode.style.fontSize = size;
+		divNode.className = className;
+	}
+</script>
+
+<style type="text/css">
+	div,.normal{
+		background-color:#F5F5F5;
+		color:#0D0B0B;
+		font-size: 16px;
+		width:500px
+	}
+	.max{
+		background-color: #11FD58;
+		color: #EF090D;
+		font-size: 24px;
+		width:500px
+	}
+	.nor{
+		background-color:#F5F5F5;
+		color:#0D0B0B;
+		font-size: 16px;
+		width:500px
+	}
+	.min{
+		background-color:#0806F0;
+		color: #E0F03C;
+		font-size: 9px;
+		width:500px
+	}
+</style>
+</head>
+<!--
+1、定义数据封装的标签（定义界面）
+2、定义事件源
+3、注册事件
+4、事件处理
+需求：
+页面中有一个新闻区域
+通过超链接 大 中 小
+可以让用户改变区域中的字体大小
+-->
+
+<h2>新闻标题</h2>
+<a href="javascript:void(0)" onClick="changeSize('max')">大</a>
+<a href="javascript:void(0)" onClick="changeSize('nor')">中</a>
+<a href="javascript:void(0)" onClick="changeSize('min')">小</a><br/>
+<div id="newsId" >
+1、定义数据封装的标签（定义界面）<br/>
+2、定义事件源<br/>
+3、注册事件<br/>
+4、事件处理<br/>
+需求：<br/>
+页面中有一个新闻区域<br/>
+通过超链接 大 中 小<br/>
+可以让用户改变区域中的字体大小<br/>
+</div>
+<body>
+</body>
+</html>

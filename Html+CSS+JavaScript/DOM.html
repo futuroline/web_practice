@@ -1,0 +1,215 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script type="text/javascript">
+	var b = true;
+	function demo(){
+		var div = document.getElementById("divId");
+		//alert(div.tagName);
+		//div.innerText = "kkkk";
+		//alert(div.innerText);
+		//div.className = "font2";
+		if(b){
+			
+			div.className = "font2";
+			//alert("font2");
+			b=false;
+		}else{
+			div.className = "font1";
+			//alert("font1");
+			b = true;
+		}
+		
+	}
+	var random = parseInt(Math.random()*100+1)
+	function guess(){
+		var textObj = document.getElementById("textId");
+		var num = parseInt(textObj.value);
+		if (num>random){
+			alert("大了，继续");
+		}else if (num<random){
+			alert("小了，继续");
+			
+		}else{
+			alert("猜中了"+random);
+		}
+		
+	}
+	
+	function DStyle()
+	{
+		var divObj = document.getElementById("divstyleId");
+		/*divObj.style.backgroundColor = "red"
+		
+		var name = divObj.nodeName;
+		var type = divObj.nodeType;
+		var value = divObj.nodeValue;
+		alert(name+"  "+type+"  "+value);*/
+		
+		//获取父节点
+		var parent = divObj.parentNode;
+		//getNodeInfo(parent);
+		
+		//获取子节点
+		var childNodes = parent.childNodes;
+		for (var i=0;i<childNodes.length;i++)
+		{
+			//getNodeInfo(childNodes[i]);
+		}
+		
+		//获取兄弟节点
+			//1、获取上一个节点的兄弟节点
+			var  preNode = divObj.previousSibling.previousSibling;
+			//getNodeInfo(preNode); 
+			//2、获取下一个兄弟节点
+			var nextNode = divObj.nextSibling;
+			//getNodeInfo(nextNode);
+		//需求：获取a标签的文本
+		var aNode = divObj.nextSibling.nextSibling.nextSibling.nextSibling;
+		var atext = aNode.childNodes[0];
+		//getNodeInfo(atext);
+		
+		//需求：获取单元格1文本
+		//先获取table节点
+		/*var tableNode = divObj.nextSibling.nextSibling.childNodes[1].childNodes[2].childNodes[1].childNodes[0];*/
+		var tableNode = divObj.nextSibling.nextSibling;
+		var tdNodes = tableNode.getElementsByTagName("td");
+		//getNodeInfo(tdNodes[0].childNodes[0]);
+		
+		
+		var all = document.all;
+		//alert(all.length);
+		var info = "";
+		for (var j=0;j<all.length;j++){	
+			info += all[j].nodeName+"****"+all[j].nodeType+"****"+all[j].nodeValue+"<br/>"
+		}
+		//document.writeln(info);
+		getChildNodes(document.childNodes,0);
+		//alert(document.all(1));
+		//document.writeln(str);
+		
+		getAtts();
+	}
+	
+	function getNodeInfo(node)
+	{
+		alert(node.nodeName+"****"+node.nodeType+"****"+node.nodeValue);
+	}
+	
+	//通过递归获取节点的层次关系
+	var str = "";
+	function getChildNodes(nodes,level)
+	{
+		for (var i=0;i<nodes.length;i++)
+		{
+			str += getLevel(level)+nodes[i].nodeName+"<br/>";
+			//document.writeln(nodes[i].nodeName+"<br/>");	
+			if (nodes[i].hasChildNodes)
+			{
+				getChildNodes(nodes[i].childNodes,level+1);
+			}
+		}			
+	}
+	
+	function getLevel(level)
+	{
+		s = "";
+		for (var i=0;i<level;i++){
+			s += "|----"
+		}
+		return s;
+	}
+	
+	//获取属性节点
+	function getAtts()
+	{
+		var divObj = document.getElementById("divstyleId");
+		var atts = divObj.attributes;
+		var str = "";
+		alert(atts.length);
+		for (var i=0;i<atts.length;i++)
+			{
+				str += atts[i].nodeName+"**"+atts[i].nodeType+"***"+atts[i].nodeValue+"<br>";
+			}
+		document.write(str);
+	}
+	
+</script>
+
+<style type="text/css">
+	.font1{
+		color:#13F818;
+	}
+	.font2{
+		color:#F80707;
+	}
+</style>
+</head>
+<pre>
+<!--DOM:document object model 文档对象模型-->
+dom三层模型：
+dom1:将html文档封装成对象
+dom2:将xml文档封装成对象
+dom3:将xml文档对象封装成对象
+
+标签树：标签树是对象，各个节点也是对象
+html
+	|--head
+		|--title
+		|--base
+		|--mata
+		|--link
+		|--style
+	|--body
+		|--table
+			|--tbody
+				|--tr
+					|--td
+					|--th
+		|--div
+		|--form
+		|--a
+DOM树，节点
+
+DHTML:动态html，多种技术的综合体
+--html css dom javascript
+
+html：将数据进行封装
+dom：将标签封装成对象
+css：负责标签中数据的样式
+javascript：将三者进行融合，通过程序设计方式来完成动态效果的操作
+
+
+DHTML+xmlHttpRequest-->AJAX
+
+</pre>
+<input type="button" value="演示效果" onClick="guess()" />
+<input type="text" id="textId" />
+<div class="" id="divId" >
+haha
+</div>
+<br\>
+<input type="button" value="演示效果" onClick="DStyle()" />
+<div id="divstyleId" style="background-color:#0DF335" >
+hahaasasasa
+</div>
+
+<table>
+	<tr>
+		<td>单元格1</td>
+		<td>单元格2</td>
+	</tr>
+	<tr>
+		<td>单元格3</td>
+		<td>单元格4</td>
+	</tr>
+	
+</table>
+	<a href="http://www.baidu.com/" >百度</a>
+	<span>审判区域</span>
+	
+<body>
+</body>
+</html>

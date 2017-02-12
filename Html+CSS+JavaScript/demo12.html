@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+	table td a:link,table td a:visited{
+		text-decoration: none;
+		color: #2EF050;
+	}
+	table,table td{
+		border: #F5F187 1px solid;
+	}
+</style>
+<script type="text/javascript">
+	var count = 0;
+	function addFile(){
+		var tabNode = document.getElementsByTagName("table")[0];
+		var trNode = tabNode.insertRow();
+		trNode.id = "tr_"+count;
+		var tdNode_file = trNode.insertCell();
+		var tdNode_del = trNode.insertCell();
+		tdNode_file.innerHTML = "<input type='file' />";
+		//tdNode_del.innerHTML = "<a href='javascript:void(0)' onclick='delfile("+count+")'>删除附件"+count+"</a>";
+		tdNode_del.innerHTML = "<a href='javascript:void(0)' onclick='delfile(this)'>删除附件"+count+"</a>";
+		count++;/**/
+	}
+	
+	function delfile(aNode){
+		var trNode = aNode.parentNode.parentNode;
+		//var trNode = document.getElementById("tr_"+num);
+		var parentNode = trNode.parentNode;
+		parentNode.removeChild(trNode);
+	}
+</script>
+</head>
+
+<body>
+<table>
+	<tr>
+		<td>
+			<a href="javascript:void(0)" onClick="addFile()">添加附件</a>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

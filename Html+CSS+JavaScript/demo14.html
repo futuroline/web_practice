@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+	#useryes,#userno{
+		display: none
+	}
+</style>
+
+<script type="text/javascript">
+	function checkUser(node){
+		//alert(node.name);
+		var name = node.value;
+		var reg = new RegExp("^[a-zA-Z]{5}$"); //    /^[a-z]{5}$/i
+		//var spanNode = document.getElementById("userspan");
+		var spanyes = document.getElementById("useryes");
+		var spanno = document.getElementById("userno");
+		if (name.match(reg)){
+			//alert("YES");
+			//spanNode.innerHTML = "用户名正确".fontcolor("green");
+			spanyes.style.color = "green";
+			spanyes.style.display = "inline";
+			spanno.style.display = "none";
+		}else{
+			//alert("NO");
+			//spanNode.innerHTML = "用户名错误".fontcolor("red");
+			spanno.style.color = "red";
+			spanno.style.display = "inline";
+			spanyes.style.display = "none";
+		}
+	}
+	
+	function checkPsw(node){
+		//alert(node.name);
+		var pass = node.value;
+		//var reg = new RegExp("^[0-9]{5}$"); //RegExp("^\\d{5}$")
+		var reg = /^\d{5}$/;
+		//var spanNode = document.getElementById("userspan");
+		var span = document.getElementById("pswspan");
+		if (pass.match(reg)){
+			span.innerHTML = "密码格式正确".fontcolor("green");
+		}else{
+			span.innerHTML = "密码格式错误".fontcolor("red");
+		}
+	}
+	
+	function checkMail(node){
+		var mail = node.value;
+		var reg = /^\w+@\w+(\.\w)+$/;
+		
+		var span =  document.getElementById("mailpan");
+		if (reg.test(mail)){
+			span.innerHTML = "邮箱格式正确".fontcolor("green");
+		}else{
+			span.innerHTML = "邮箱格式错误".fontcolor("red");
+		}
+	}
+		
+	function checkPwd(node){
+		
+	}
+	
+	function checkForm(){
+		//event.returnValue = true;
+		//event.returnValue = false
+		
+		//return false;
+		//return true;
+		//document.forms
+		//alert(document.forms[0].user.value);
+		
+		//var form = document.forms[0];
+		//if (checkUser(form.user)&&......)
+	}
+		
+</script>
+</head>
+
+<body>
+<form action="http:127.0.0.1" onSubmit="return checkForm()"> <!--event.returnValue onSubmit="checkForm()"-->
+	用户名称：<input type="text" name="user" onBlur="checkUser(this)" />
+	<span id="useryes">用户名正确</span> <span id="userno">用户名错误</span> 
+	<br/>
+	输入密码：<input type="text" name="psw"  onBlur="checkPsw(this) "/>
+	<span id="pswspan"></span>
+	<br/>
+	确认密码：<input type="text" name="repsw" /><br/>
+	邮件地址：<input type="text" name="mail" onBlur="checkMail(this)" />
+	<span id="mailpan"></span>
+	<br/>
+  <input type="submit" name="提交数据"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,37 @@
+正则表达式：
+          是一种专门用于操作字符串的规则。
+		  通过一些符号来表示，简化对字符串的复杂操作。
+		  弊端：阅读性较差
+		  
+		  常见操作：
+		  1、匹配 String matches(regex)
+		  2、获取(查找) Pattern、Matcher
+		     Pattern p = Pattern.compile(regex)
+			 Matcher m = p.matcher(String)
+			 
+			 while (m.find()){
+			    System.out.println(m.group());
+			}
+		  3、切割：String splite(regex)
+		  4、替换：String replaceAll(regex,str)
+		  
+		  
+		  示例：
+		  获取文档中连续的数字,并替换成“#”
+		  String regex = "\\d{5,}"; //数字出现5次以上
+		  Pattern p = Pattern.compile(regex);
+		  Matcher m = p.matcher(STring);
+		  while (m.find()){
+		     String s = m.group();
+			 s.replaceAll(regex,"#");
+		  }
+		  
+		  网页爬虫：
+		  通过网络以及IO读取网页的源文件，并通过规则获取网页中符合规则的数据。
+		  比如：mail爬虫
+		  String regex= "[a-zA-Z0-9_]{6,12}@[a-zA-Z0-9]+(\\.[a-zA-Z]+)+";
+		  
+		  正则表达式组的含义：将部分封装以便重用。\\num反向引用指定组.
+		  示例：IP地址排序
+
+		  

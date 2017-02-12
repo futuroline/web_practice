@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+	table{
+		width: 600px;
+		border-collapse: collapse;
+	}
+	table th{
+		border:#0066cc 1px solid
+	}
+</style>
+</head>
+<!--将persion对象封装成文件，导入-->
+<script type="text/javascript" src="persion.js" ></script>
+<script type="text/javascript" >
+
+	/*//变量
+	var x= 3; //定义一个变量x
+	//x ="abc";
+	var y;
+	alert(y);  //undefined
+	alert(x);*/
+	
+	//语句
+/*	var x = 3; 
+	if(3==x){
+		alert("yes");
+	}else{
+		alert("no");
+	}
+	
+	switch (x){
+		case "abc":
+			alert("abc");
+			break;
+		case 3:
+			alert("3");
+			break;
+		default:
+			alert("default");
+	}
+	
+	while(x<5){
+		alert("x="+x);
+		x++;
+	}
+	
+	for (var i=0;i<5;i++){
+		alert("i="+i);
+	}
+	*/
+	/*document.write("<table border='1'>")
+	for (var xx=1; xx <=9; xx++){
+		document.write("<tr>");
+		for (var yy=1;yy<=xx;yy++){
+			document.write("<th>");
+			document.write(xx+"*"+yy+"="+xx*yy);
+			document.write("</th>");
+		} 
+		document.write("</tr>");
+	}
+	document.write("</table>")*/
+	
+	//数组   数据就是集合，没有越界
+	//var arr = new Array();
+	//var arr = [4,2,4,6];
+	//arr[0]=100;
+	//arr[6] = 100;
+	//var arr = ["abc",2,true,6.7];
+	
+	//for (var x=0;x<arr.length;x++){
+	//	alert(arr[x]);
+	//}
+	
+	/*var arr = [2,1,9,6,7];
+	
+	for (var x=0;x<arr.length;x++){
+		for (var y=0;y<arr.length-x-1;y++){
+			if (arr[y]<arr[y+1]){
+				var temp = arr[y];
+				arr[y] = arr[y+1];
+				arr[y+1] = temp;
+			}
+		}
+	}
+	for (var i=0;i<arr.length;i++){
+		document.write(arr[i]+"   ");
+	}
+	*/
+	//函数
+	
+	/*var arr = [2,1,9,6,7];
+	function sort(arr){
+			
+		for (var x=0;x<arr.length;x++){
+			for (var y=0;y<arr.length-x-1;y++){
+				if (arr[y]<arr[y+1]){
+					var temp = arr[y];
+					arr[y] = arr[y+1];
+					arr[y+1] = temp;
+				}
+			}
+		}
+	}
+	sort(arr);
+	function show(arr){
+		for (var i=0;i<arr.length;i++){
+		    document.write(arr[i]+"   ");
+	    }
+	}
+	show(arr);*/
+	
+	/*var x= 4;
+	function show(x){
+		x = 5;
+	}
+	show(x);
+	alert(x);*/
+	/*//没有重载函数
+	function show(x,y){
+		alert(x+","+y);
+	}
+	
+	show(3);*/
+	
+	/*function show(){
+		for (var x=0;x<arguments.length;x++){
+			alert(arguments[x]);
+		}
+		alert(arguments.length);
+	}
+	
+	show(1,2,3,4);*/
+	
+	/*function show(){
+		return 4;
+	}
+	alert(show());*/
+	
+	/*function show(){
+		//return 4;
+	}
+	alert(show());*/
+	
+	/*function show(){
+		return 4;
+	}
+	
+	var x = show; //x指向了show所指向的对象
+	alert(x);*/
+	
+	//动态函数
+	/*var show = new Function("x","y","var sum = x+y; return sum;");  //参数+函数体
+	alert(show(3,4));*/
+	
+	
+	//匿名函数
+	/*var show = function(){
+		alert("function run");
+	}
+	
+	show();*/
+	
+	//加载完毕后执行  用在定义事件属性的行为时
+	/*window.onload = function(){
+		alert("onload over");
+	}*/
+	
+	
+	//对象
+	/*function Persion(){ alert("persion init");}
+	var p = new Persion();
+	p.name = "张三";
+	p.age = 30;
+	p.eat = function(){
+		alert("eat.....");
+	}
+	p.eat();*/
+	
+	/*function Persion(name,age){
+		this.name = name;
+		this.age= age;
+	}
+	
+	var p = new Persion("lisi",90);
+	alert(p.name+"..."+p.age);
+	alert(p["name"]+"..."+p.age);*/
+	//将persion对象封装成文件，导入
+	
+	//var p = new Persion("zhaoliu",123);
+	//alert(p["name"]+"..."+p.age);
+	alert(p.getName());
+</script>
+
+<body>
+</body>
+</html>

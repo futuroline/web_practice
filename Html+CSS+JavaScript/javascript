@@ -1,0 +1,214 @@
+Javascript:
+	是Netscape公司语言，给予对象和事件驱动的，和java不同之处
+	1、所属公司不一样，java是sun公司，现在是Orcale
+	2、js是基于对象，java是面向对象
+	3、js是由浏览器解释并执行，java是由jvm解释并执行
+	4、js是弱类型的语言，java是强类型
+	5、js是非严谨的，java是严谨的
+	javascript运行在客户端
+		
+		
+	Javascript需要被浏览器说解释执行就必须要将代码和html相结合
+	结合方式是什么样呢？
+	1、通过定义<script>标签将js代码存入其中，并指定一个type属性，方便于浏览器启动指定的解析引擎
+	2、也可以通过<script>标签，使用src属性连接一个指定的js文件进来。
+		
+	
+	Javascript基本语法：
+	1、变量
+		通过var关键字定义变量，该变量可以赋予不同类型的常量
+		var x=3;
+		x=abc;
+		特殊常量：undefined
+	2、语句
+		if,switch,while,do,while,for
+		使用逻辑运算符进行布尔表达式连接的时候，需要使用短路与短路或，&&和||
+		因为在js中，非0即为true，0为false，非null为true，null为false
+		
+		js特有的语句：
+		with(对象){}:可以确定对象所使用的范围，在范围内，可以直接使用指定对象的属性和行为，而不用 对象. 的形式调用
+			简化了对象的操作
+		
+		for (变量 in 对象)：可以对对象的属性以及行为进行遍历
+		
+	3、数组
+		对于js的数组特点在于该数据的长度是可变的，相对于java中的集合
+		该数据中可以存放的元素类型可以是不同的
+		
+		定义格式：
+			var arr = [2,tur,"abs"];
+			var arr = new Array();  //定义一个空数组，临时容器
+			//二维数组
+			var arr = [[1,2,4],[4,3]];
+		操作形式和java一样，都是通过for进行遍历，同时也使用了指针思想
+	
+	4、函数
+		通过function关键字定义函数
+			1、一般函数
+				格式：function 函数名(形式参数...)
+						{
+							执行语句;
+							return 返回值;
+						}
+					  通常为了提高代码复用可应将代码封装成函数
+					  两个明确：
+						#、明确该功能实现后的结果
+						#、改功能在实现过程中是否有未知内容参与运算
+			2、动态函数
+				使用Function对象
+				var show = new Function(“x”,“y”,“return x+y;”);
+				动态函数的特点：可以将函数参数列表和方法体作为参数传递
+			3、匿名函数：
+				一般函数的简写形式
+				function(){}
+				匿名函数通常可以用于事件的处理
+				如：
+				window.onload = function(){alert("onload over");}
+			
+			
+			在函数使用时需要注意的部分：
+			function show(){
+				return "show run";
+			}
+			
+			var method = show();
+			var method = show;
+			两句代码都是正确的
+			第一句表示的是将show方法运行后的结果赋值给method变量
+			第二句表示的是将show指向的对象地址赋值给method，那么method也指向了该对象；
+			那么就可以通过method();形式调用这个show方法
+			
+			
+			
+	JS可以通过对象的形式将数据进行封装
+	首先要对对象进行描述，通过函数来完成
+	function Persion(name,age)
+	{
+		this.name = name;
+		this.age = age;
+	}
+	
+	var p = new Persion("lisi",30);
+	
+	alert(p["name"]+"..."+p.age);
+	
+	p.show = function()
+	{
+		alert("show run");
+	}
+	
+	javascript中已经定义好的一些对象
+	1、String,Math,Date,Object,Array,Global，Function
+		这些对象都有一个属性叫做prototype原型
+		prototypr可以获取指定对象类型原型的引用/可以获取指定对象的引用
+		可以通过该引用给已有的对象赋予一些新的功能
+		
+		那么在使用该对象时可以直接调用定义好的新功能
+		
+		function getMax()
+		{
+			var max = 0;
+			for (var i=0;i<this.length;i++)
+			{
+				if (this[i]>this[max])
+				{
+					max = i;
+				}
+			}
+			return this[max];
+		}
+		
+		var arr = [2,3,4,1];
+		arr.sort();//直接调用Array对象的sort方法对数组进行排序
+		那么可不可以象调用sort方法一样调用getMax方法呢？
+		就需要将getMax方法添加到Array对象当中。
+		
+		Array.prototype.getMax = getMax;
+		
+		vae x = arr.getMax();
+		alert("max="+x);
+		
+		var str = "abc";
+		str.substring(1,2);
+		str.bold();  //<b>str</b>
+		
+		//模拟一下String中fontcolor方法
+		function fontcolor(color)
+		{
+			return "<font color='"+color+"' >"+this+"</font>";
+		}
+		
+		String.prototype.color=fontcolor;
+		
+		str.color("red");
+		
+		//给字符串定义一个新功能，去掉字符串两端的空格
+		function trim()
+		{
+			var start,end;
+			start=0;
+			end = this.length -1;
+			while(start<=end&&this.charAt(start)==" ")
+			{
+				start++;
+			}
+			while (start<=end&&this.charAt(end)==" ")
+			{
+				end--;
+			}
+			return this.substring(start,end+1);
+			
+		}
+		
+		String.prototype.trim=trim;
+		
+		var s = "   asd   ";
+		s = s.trim();
+		alert("--s--");//asd
+		
+		
+		常见的全局方法
+		parseInt(numstr, [radix]); //将数字格式的字符串转换成整数，如果指定了基数，那么number就会按照指定基数机制转换
+		
+		var num = parseInt("110",2);   //表示110这个字符串按照2进制转换成十进制  num=6
+		
+		var x = 6;
+		alert(x.toString(2)); //110;  获取6对象的二进制表现形式
+		
+	
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
